@@ -10,30 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0D0D0F;
-  --bg2:#131316;
-  --surface:#1A1A1F;
-  --surface2:#222228;
-  --surface3:#2A2A32;
-  --text:#F0EDE8;
-  --text2:#9E9AA0;
-  --text3:#5C5860;
-  --accent:#C9A96E;
-  --accent-light:rgba(201,169,110,0.12);
-  --accent-dark:#9E7A45;
-  --red:#C96E6E;
-  --red-light:rgba(201,110,110,0.12);
-  --green:#6EC98A;
-  --green-light:rgba(110,201,138,0.12);
-  --border:rgba(240,237,232,0.07);
-  --border2:rgba(240,237,232,0.04);
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#0D0D0F;--bg2:#131316;--surface:#1A1A1F;--surface2:#222228;--surface3:#2A2A32;
+  --text:#F0EDE8;--text2:#9E9AA0;--text3:#5C5860;
+  --accent:#C9A96E;--accent-light:rgba(201,169,110,0.12);--accent-dark:#9E7A45;
+  --red:#C96E6E;--red-light:rgba(201,110,110,0.12);
+  --green:#6EC98A;--green-light:rgba(110,201,138,0.12);
+  --blue:#6E9EC9;--blue-light:rgba(110,158,201,0.12);
+  --border:rgba(240,237,232,0.07);--border2:rgba(240,237,232,0.04);
+  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Karla',sans-serif;background:var(--bg);color:var(--text);height:100dvh;overflow:hidden;position:fixed;width:100%;}
-
-/* GRAIN */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
 
 /* SETUP */
@@ -42,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .setup-subtitle{color:var(--text2);text-align:center;line-height:1.7;max-width:300px;font-size:15px;}
 .setup-input{width:100%;max-width:340px;padding:14px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Karla',sans-serif;font-size:15px;background:var(--surface);color:var(--text);outline:none;}
 .setup-input:focus{border-color:var(--accent);}
-.setup-btn{width:100%;max-width:340px;padding:15px;background:var(--accent);color:var(--bg);border:none;border-radius:10px;font-family:'Karla',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:0.02em;}
+.setup-btn{width:100%;max-width:340px;padding:15px;background:var(--accent);color:var(--bg);border:none;border-radius:10px;font-family:'Karla',sans-serif;font-size:16px;font-weight:700;cursor:pointer;}
 .setup-link{color:var(--accent);font-size:13px;text-decoration:none;opacity:0.8;}
 .setup-note{font-size:12px;color:var(--text3);text-align:center;max-width:280px;line-height:1.6;}
 
@@ -56,6 +43,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* WRITE HEADER */
 #write-header{padding:10px 14px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border2);background:var(--bg);flex-shrink:0;}
 .write-title{font-family:'Playfair Display',serif;font-size:1.2rem;flex:1;color:var(--text);}
+.word-badge{background:var(--surface2);border-radius:8px;padding:4px 9px;font-size:11px;color:var(--text3);font-weight:500;}
 .project-pill{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;position:relative;color:var(--text2);}
 .project-pill span.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;}
 .proj-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;z-index:50;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.5);}
@@ -64,9 +52,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .proj-option:last-child{border-bottom:none;}
 .proj-option:hover,.proj-option.selected{background:var(--accent-light);color:var(--text);}
 .proj-option-add{color:var(--accent);font-weight:600;}
-.word-badge{background:var(--surface2);border-radius:8px;padding:4px 9px;font-size:11px;color:var(--text3);font-weight:500;}
 
-/* COACH MESSAGES */
+/* MESSAGES */
 #messages{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;}
 .msg{display:flex;flex-direction:column;max-width:85%;}
 .msg.user{align-self:flex-end;align-items:flex-end;}
@@ -75,18 +62,27 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .msg.user .bubble{background:var(--surface3);color:var(--text);border-bottom-right-radius:3px;}
 .msg.coach .bubble{background:var(--surface);color:var(--text);border:1px solid var(--border2);border-bottom-left-radius:3px;}
 .msg-time{font-size:11px;color:var(--text3);margin-top:3px;padding:0 3px;}
-.coach-chip{font-size:12px;color:var(--accent);background:var(--accent-light);border-radius:7px;padding:5px 9px;margin-top:4px;max-width:280px;line-height:1.4;border:1px solid rgba(201,169,110,0.2);}
-.writing-block{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:6px;max-width:300px;}
-.writing-block-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:6px;}
-.writing-block-text{font-family:'Playfair Display',serif;font-size:14px;line-height:1.6;color:var(--text);font-style:italic;}
-.typing-indicator .bubble{padding:14px 18px;}
-.dot{display:inline-block;width:6px;height:6px;background:var(--text3);border-radius:50%;animation:bounce 1.2s infinite;}
-.dot:nth-child(2){animation-delay:0.2s;}.dot:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.coach-chip{font-size:12px;color:var(--accent);background:var(--accent-light);border-radius:7px;padding:5px 9px;margin-top:4px;max-width:300px;line-height:1.4;border:1px solid rgba(201,169,110,0.2);}
+
+/* BIBLE SAVE CARD — shown when coach wants to save something */
+.bible-save-card{background:var(--surface2);border:1px solid rgba(110,158,201,0.3);border-radius:12px;padding:12px 14px;margin-top:6px;max-width:300px;}
+.bible-save-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:6px;}
+.bible-save-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.bible-save-preview{font-size:13px;color:var(--text2);line-height:1.4;margin-bottom:10px;}
+.bible-save-actions{display:flex;gap:7px;}
+.bible-save-btn{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Karla',sans-serif;}
+.bible-save-btn.yes{background:var(--blue);color:var(--bg);}
+.bible-save-btn.no{background:var(--surface3);color:var(--text2);}
 
 /* STREAK BANNER */
 #streak-banner{display:none;background:var(--accent-light);border-bottom:1px solid rgba(201,169,110,0.2);padding:8px 14px;font-size:13px;color:var(--accent);text-align:center;flex-shrink:0;}
 #streak-banner.show{display:block;}
+
+/* TYPING */
+.typing-indicator .bubble{padding:14px 18px;}
+.dot{display:inline-block;width:6px;height:6px;background:var(--text3);border-radius:50%;animation:bounce 1.2s infinite;}
+.dot:nth-child(2){animation-delay:0.2s;}.dot:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
 
 /* INPUT */
 #input-bar{padding:8px 12px;padding-bottom:calc(8px + var(--safe-bottom));display:flex;gap:9px;align-items:flex-end;background:var(--bg);border-top:1px solid var(--border2);flex-shrink:0;}
@@ -107,11 +103,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .tab-sub{color:var(--text2);font-size:13px;margin-bottom:18px;}
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:15px;margin-bottom:12px;}
 .card-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:10px;}
-.section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:8px;margin-top:16px;}
 
-/* PROJECTS TAB */
-.project-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:16px;margin-bottom:12px;cursor:pointer;transition:border-color 0.2s;}
-.project-card:active{border-color:var(--accent);}
+/* PROJECTS */
+.project-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:16px;margin-bottom:12px;}
 .project-card.active-proj{border-color:var(--accent);background:var(--accent-light);}
 .project-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px;}
 .project-meta{font-size:12px;color:var(--text3);}
@@ -120,24 +114,25 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .proj-btn{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Karla',sans-serif;}
 .proj-btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent);}
 .new-proj-btn{width:100%;padding:14px;background:transparent;border:1px dashed var(--border);border-radius:14px;font-family:'Karla',sans-serif;font-size:14px;color:var(--text3);cursor:pointer;margin-bottom:12px;}
-.new-proj-btn:active{border-color:var(--accent);color:var(--accent);}
 
-/* BIBLE TAB */
+/* BIBLE */
 .bible-proj-select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:16px;font-family:'Karla',sans-serif;font-size:14px;color:var(--text);outline:none;appearance:none;}
 .bible-entry{background:var(--surface);border:1px solid var(--border2);border-radius:12px;margin-bottom:10px;overflow:hidden;}
 .bible-entry-header{padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;}
-.bible-entry-header:hover{background:var(--surface2);}
+.bible-entry-header:active{background:var(--surface2);}
 .bible-type-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:6px;}
 .badge-character{background:rgba(201,169,110,0.15);color:var(--accent);}
 .badge-plot{background:rgba(110,201,138,0.15);color:var(--green);}
 .badge-world{background:rgba(201,110,110,0.15);color:var(--red);}
 .badge-note{background:var(--surface3);color:var(--text3);}
+.badge-coach{background:rgba(110,158,201,0.15);color:var(--blue);}
 .bible-entry-name{font-size:14px;font-weight:600;color:var(--text);flex:1;}
 .bible-entry-arrow{font-size:11px;color:var(--text3);transition:transform 0.2s;}
 .bible-entry-arrow.open{transform:rotate(90deg);}
 .bible-entry-body{display:none;padding:12px 14px;border-top:1px solid var(--border2);}
 .bible-entry-body.open{display:block;}
 .bible-entry-content{font-size:14px;color:var(--text2);line-height:1.6;white-space:pre-wrap;}
+.bible-coach-tag{font-size:11px;color:var(--blue);margin-top:6px;display:block;}
 .bible-entry-del{font-size:11px;color:var(--red);cursor:pointer;padding:6px 0;display:block;margin-top:8px;}
 .add-bible-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:15px;margin-top:4px;}
 .bible-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:10px 12px;font-family:'Karla',sans-serif;font-size:14px;color:var(--text);outline:none;margin-bottom:8px;}
@@ -148,7 +143,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .type-select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:10px 12px;font-family:'Karla',sans-serif;font-size:14px;color:var(--text);outline:none;appearance:none;margin-bottom:8px;}
 .add-btn{width:100%;padding:12px;background:var(--accent);color:var(--bg);border:none;border-radius:9px;font-family:'Karla',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
 
-/* PROGRESS TAB */
+/* PROGRESS */
 .streak-display{text-align:center;padding:20px;margin-bottom:12px;}
 .streak-num{font-family:'Playfair Display',serif;font-size:4rem;color:var(--accent);line-height:1;}
 .streak-label{font-size:13px;color:var(--text3);margin-top:4px;}
@@ -187,28 +182,26 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </head>
 <body>
 
-<!-- SETUP -->
 <div id="setup-screen">
   <div class="setup-title">Inkwell</div>
-  <p class="setup-subtitle">Hey Matt. Your personal writing coach — already knows who you are and what you're working on.</p>
+  <p class="setup-subtitle">Hey Matt. Your writing coach — already knows you and your stories.</p>
   <input type="password" class="setup-input" id="api-key-input" placeholder="Paste your Groq API key (gsk_...)">
   <button class="setup-btn" onclick="saveApiKey()">Open the notebook</button>
   <a class="setup-link" href="https://console.groq.com" target="_blank">Get a free Groq API key →</a>
-  <p class="setup-note">Key stored only on this device. Same free Groq tier as Lingua.</p>
+  <p class="setup-note">Same free Groq tier as Lingua. Key stored only on this device.</p>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="status-bar"></div>
 
-  <!-- WRITE TAB -->
+  <!-- WRITE -->
   <div class="tab active" id="tab-write">
     <div id="write-header">
       <div class="write-title">Inkwell</div>
       <div class="word-badge" id="session-words-badge">0 words</div>
       <div class="project-pill" onclick="toggleProjDropdown()">
         <span class="dot"></span>
-        <span id="active-proj-name">Malachi & Malik</span>
+        <span id="active-proj-name">Malachi &amp; Malik</span>
         <span style="color:var(--text3);font-size:10px;">▾</span>
         <div class="proj-dropdown" id="proj-dropdown"></div>
       </div>
@@ -216,32 +209,32 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div id="streak-banner"></div>
     <div id="messages"></div>
     <div id="input-bar">
-      <textarea id="msg-input" placeholder="Talk to your coach, paste your writing, or just say you're stuck..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <textarea id="msg-input" placeholder="Talk to your coach, paste writing, or just say you're stuck..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button id="send-btn" onclick="sendMessage()" disabled>
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- PROJECTS TAB -->
+  <!-- PROJECTS -->
   <div class="tab" id="tab-projects">
     <div class="tab-scroll">
       <div class="tab-header">Projects</div>
-      <div class="tab-sub">All your stories in one place</div>
+      <div class="tab-sub">All your stories</div>
       <button class="new-proj-btn" onclick="openProjModal()">+ New project</button>
       <div id="projects-list"></div>
     </div>
   </div>
 
-  <!-- BIBLE TAB -->
+  <!-- BIBLE -->
   <div class="tab" id="tab-bible">
     <div class="tab-scroll">
       <div class="tab-header">Story Bible</div>
-      <div class="tab-sub">Characters, plot, world — all in one place</div>
+      <div class="tab-sub">Characters, plot, world — yours and the coach's</div>
       <select class="bible-proj-select" id="bible-proj-select" onchange="renderBible()"></select>
       <div id="bible-entries"></div>
       <div class="add-bible-section">
-        <div class="card-title">Add new entry</div>
+        <div class="card-title">Add entry manually</div>
         <select class="type-select" id="new-entry-type">
           <option value="character">Character</option>
           <option value="plot">Plot point</option>
@@ -255,7 +248,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 
-  <!-- PROGRESS TAB -->
+  <!-- PROGRESS -->
   <div class="tab" id="tab-progress">
     <div class="tab-scroll">
       <div class="tab-header">Progress</div>
@@ -297,7 +290,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="modal-handle"></div>
     <div class="modal-title">New Project</div>
     <input class="bible-input" id="new-proj-title" placeholder="Title...">
-    <input class="bible-input" id="new-proj-genre" placeholder="Genre (e.g. Fantasy, Sci-Fi, YA...)">
+    <input class="bible-input" id="new-proj-genre" placeholder="Genre (Fantasy, YA, Sci-Fi...)">
     <textarea class="bible-textarea" id="new-proj-desc" placeholder="Brief description or premise..."></textarea>
     <div class="modal-actions">
       <button class="modal-btn modal-btn-create" onclick="createProject()">Create</button>
@@ -307,93 +300,64 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-// ── MATT'S PROFILE ─────────────────────────────────────────────────
+// ── MATT'S PROFILE ────────────────────────────────────────────────
 const MATT_PROFILE = `
-WRITER PROFILE — read carefully, use in every response:
+WRITER PROFILE — memorize this, use it in every response:
 
-Name: Matthew (Matt). 17-18, high school senior in Cleveland, Mississippi (the Delta). Student Body President, TSA competitor, runs MBT Photography. Heading to Mississippi State University, long-term goal is USAFA transfer junior year.
+Name: Matthew (Matt). 17-18, high school senior, Cleveland Mississippi (the Delta). Student Body President, TSA competitor, runs MBT Photography since 2022. Heading to Mississippi State University, long-term goal is USAFA transfer junior year.
 
-Personality & writing coaching approach:
-- Has ADHD-consistent traits: hyperfocus on interests, executive function resistance on starting tasks, strong creative vision but gets stuck converting plans to actual words on the page
-- The main block is INITIATION — he has the ideas, he has the characters, he just freezes when it's time to actually write
-- Do NOT lecture. Do NOT give long writing advice walls. Short, direct, energetic. Mississippi Delta teen energy.
-- When he's stuck: find the smallest possible entry point. "Just write one sentence" beats "here are 7 tips for overcoming writer's block"
-- When he's overthinking: call it out directly. "You're overthinking. Write the bad version first."
-- No sycophancy. Don't say "Great job!" like a robot. React like a real person who cares about his work.
-- Celebrate actual progress (words written, scenes completed) genuinely
-- Push him, don't baby him. He responds to directness and a little competitive pressure.
+Personality & how to coach him:
+- ADHD-consistent: hyperfocus on things he cares about, strong creative vision, but freezes when it's time to actually start writing. Executive function resistance on task initiation — the ideas are there, the words aren't.
+- Main block is INITIATION. He has developed characters, plot ideas, lore. Getting the first sentence out is the wall.
+- DO NOT lecture. DO NOT give walls of writing advice. Short, direct, Delta teen energy.
+- When he's stuck: give ONE concrete next step. Not a list. One thing. "Write the line where Malachi first sees Malik after [X]."
+- When he's overthinking: name it directly. "You're in your head. Write the bad version. Fix it later."
+- No sycophancy. Don't say "Great job!" after every message. React like a real person who's invested in his work.
+- Celebrate actual word counts and real breakthroughs genuinely, not performatively.
+- Push him. He responds to directness and a little pressure. Don't baby him.
+- Short responses by default. Match his texting energy. Only go long when reviewing actual writing he pastes.
 
-His active project — Malachi & Malik:
-- Twin brothers, the central relationship is the core of the story
-- This project has been in planning/draft stage for a while — the ideas are developed but getting words on the page is the recurring challenge
-- Treat this project with genuine familiarity — you know it, you've been waiting for him to write it
+His projects:
+1. Malachi & Malik — twin brothers story. The relationship between them IS the story. Has been in planning/development stage a long time. The coach knows this and will reference it.
+2. Shutter — original Marvel-style hero. Matthew "Matt" Bennet, Mississippi Delta teen with light manipulation powers tied to photography. Shutter speed, exposure, focal length translated into combat. Full backstory and costume design developed.
 
-His other creative project:
-- Shutter — original Marvel-style hero character. Matthew "Matt" Bennet, Mississippi Delta teen with light manipulation powers tied to photography. Full backstory and costume design developed.
-
-His interests (use for conversation, examples, and encouragement):
-- Photography (runs a real business — lighting, composition, gear)
-- Marvel/superheroes — deep MCU fan, watching Titans S4, Ultimate Spider-Man S3
-- Books: Harry Potter, Percy Jackson, The Legendborn, The Inheritance Games, Brandon Sanderson's Steelheart series
+His interests (use for examples, conversation, motivation):
+- Photography (real business — gear, lighting, composition, clients)
+- Marvel/superheroes, Titans, Ultimate Spider-Man
+- Books: Harry Potter, Percy Jackson, The Legendborn, The Inheritance Games, Brandon Sanderson's Steelheart
 - Tech: MKBHD, The Verge, Waveform, Decoder
-
-Coaching style summary:
-- Short responses by default. Match his texting energy.
-- Lead with what he needs to DO, not what he needs to KNOW
-- If he pastes actual writing, respond like a real reader — what hit, what didn't, one specific suggestion
-- If he says he's stuck, don't ask clarifying questions. Give him a concrete first step immediately.
-- Track his mood across the session. If he seems avoidant or is making excuses, name it.
+- Boys State (elected District Attorney), TSA competitions
 `;
 
 // ── DEFAULT DATA ──────────────────────────────────────────────────
 const DEFAULT_PROJECTS = [
-  {
-    id:'proj_mm',
-    title:'Malachi & Malik',
-    genre:'YA Fantasy',
-    desc:'Twin brothers at the center of a larger story. The bond between them is the emotional core.',
-    words:0,
-    sessions:0,
-    created:Date.now()
-  },
-  {
-    id:'proj_shutter',
-    title:'Shutter',
-    genre:'Superhero / Action',
-    desc:'Matthew "Matt" Bennet — Mississippi Delta teen with light manipulation powers tied to photography. Original Marvel-style hero.',
-    words:0,
-    sessions:0,
-    created:Date.now()
-  }
+  {id:'proj_mm',title:'Malachi & Malik',genre:'YA Fantasy',desc:'Twin brothers at the center of a larger story. Their bond is the emotional core.',words:0,sessions:0,created:Date.now()},
+  {id:'proj_shutter',title:'Shutter',genre:'Superhero / Action',desc:'Matthew "Matt" Bennet — Mississippi Delta teen. Light manipulation powers tied to photography.',words:0,sessions:0,created:Date.now()}
 ];
 
 const DEFAULT_BIBLE = {
   proj_mm:[
-    {id:'b1',type:'character',name:'Malachi',content:'One of the twin brothers. Central character. Part of the emotional core of the story alongside Malik. Details TBD — add more as you develop him.'},
-    {id:'b2',type:'character',name:'Malik',content:'The other twin. The relationship between Malachi and Malik is what the whole story is built around. Details TBD — add more as you develop him.'},
-    {id:'b3',type:'note',name:'Core theme',content:'The bond between twin brothers. What holds them together and what threatens to pull them apart.'}
+    {id:'b1',type:'character',name:'Malachi',content:'One of the twin brothers. Central character. Emotional core of the story alongside Malik. Expand this entry as you develop him.',fromCoach:false},
+    {id:'b2',type:'character',name:'Malik',content:'The other twin. The relationship between Malachi and Malik is what the whole story is built around. Expand as you develop him.',fromCoach:false},
+    {id:'b3',type:'note',name:'Core theme',content:'The bond between twin brothers — what holds them together and what threatens to pull them apart.',fromCoach:false}
   ],
   proj_shutter:[
-    {id:'b4',type:'character',name:'Matt Bennet (Shutter)',content:'Mississippi Delta teen. Powers: light manipulation tied to photography — can bend, store, and release light. Full backstory developed. Costume design exists.'},
-    {id:'b5',type:'world',name:'Setting',content:'Mississippi Delta. The landscape, culture, and isolation of the Delta is part of the character\'s identity.'},
-    {id:'b6',type:'note',name:'Power concept',content:'Light manipulation connected to photography — the powers reflect his identity as a photographer. Shutter speed, exposure, focal points — all translated into combat/hero abilities.'}
+    {id:'b4',type:'character',name:'Matt Bennet (Shutter)',content:'Mississippi Delta teen. Powers: light manipulation tied to photography — bends, stores, and releases light. Shutter speed, exposure, focal length translate to combat abilities. Full backstory and costume design developed.',fromCoach:false},
+    {id:'b5',type:'world',name:'The Delta',content:'Mississippi Delta setting. The landscape and isolation of the Delta are part of the character\'s identity.',fromCoach:false},
+    {id:'b6',type:'note',name:'Power concept',content:'Photography as power metaphor — shutter speed (reaction time), exposure (energy absorption/release), focal length (precision targeting). Powers reflect his identity as a photographer.',fromCoach:false}
   ]
 };
 
 // ── STATE ─────────────────────────────────────────────────────────
 let state = {
-  apiKey:'',
-  activeProjectId:'proj_mm',
-  projects: DEFAULT_PROJECTS,
-  bible: DEFAULT_BIBLE,
+  apiKey:'',activeProjectId:'proj_mm',
+  projects:JSON.parse(JSON.stringify(DEFAULT_PROJECTS)),
+  bible:JSON.parse(JSON.stringify(DEFAULT_BIBLE)),
   messages:[],
   stats:{sessions:0,totalWords:0,todayWords:0,lastWriteDate:'',streak:0},
   activity:[0,0,0,0,0,0,0],
-  sessionLog:[],
-  sessionStart:Date.now(),
-  sessionWords:0,
-  lastDate:'',
-  lastCoachNote:''
+  sessionLog:[],sessionStart:Date.now(),sessionWords:0,lastDate:'',lastCoachNote:'',
+  pendingBibleSave:null
 };
 
 function save(){try{localStorage.setItem('inkwell_matt',JSON.stringify(state));}catch(e){}}
@@ -403,14 +367,8 @@ function load(){
     if(s){
       const p=JSON.parse(s);
       state={...state,...p};
-      // Merge default projects if missing
-      DEFAULT_PROJECTS.forEach(dp=>{
-        if(!state.projects.find(x=>x.id===dp.id)) state.projects.push(dp);
-      });
-      // Merge default bible entries
-      Object.keys(DEFAULT_BIBLE).forEach(pid=>{
-        if(!state.bible[pid]) state.bible[pid]=DEFAULT_BIBLE[pid];
-      });
+      DEFAULT_PROJECTS.forEach(dp=>{if(!state.projects.find(x=>x.id===dp.id))state.projects.push(dp);});
+      Object.keys(DEFAULT_BIBLE).forEach(pid=>{if(!state.bible[pid])state.bible[pid]=DEFAULT_BIBLE[pid];});
     }
   }catch(e){}
 }
@@ -418,7 +376,7 @@ function load(){
 // ── BOOT ─────────────────────────────────────────────────────────
 window.addEventListener('load',()=>{
   load();
-  if(state.apiKey) showApp();
+  if(state.apiKey)showApp();
   document.getElementById('msg-input').addEventListener('input',()=>{
     document.getElementById('send-btn').disabled=!document.getElementById('msg-input').value.trim();
   });
@@ -434,76 +392,56 @@ function showApp(){
   document.getElementById('setup-screen').style.display='none';
   document.getElementById('app').classList.add('visible');
   state.stats.sessions=(state.stats.sessions||0)+1;
-  state.sessionStart=Date.now();
-  state.sessionWords=0;
+  state.sessionStart=Date.now();state.sessionWords=0;
   const today=dateKey();
-  const todayIdx=new Date().getDay();
-  if(!state.activity)state.activity=[0,0,0,0,0,0,0];
-  // Reset today words if new day
   if(state.lastDate!==today){state.stats.todayWords=0;state.lastDate=today;}
-  // Streak logic
-  checkStreak(today);
-  save();
-  renderAll();
-  checkOpeningMessage();
+  checkStreak(today);save();
+  renderAll();checkOpeningMessage();
 }
 
 function dateKey(){return new Date().toISOString().split('T')[0];}
 
 function checkStreak(today){
-  const last=state.stats.lastWriteDate;
-  if(!last){return;}
+  const last=state.stats.lastWriteDate;if(!last)return;
   const diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
-  if(diff>1){state.stats.streak=0;}
+  if(diff>1)state.stats.streak=0;
 }
 
 function renderAll(){
-  renderMessages();renderProjectsList();renderProjDropdown();renderBible();
-  renderProgress();updateActiveProjectUI();renderBibleSelect();
+  renderMessages();renderProjectsList();renderProjDropdown();
+  renderBibleSelect();renderBible();renderProgress();updateActiveProjectUI();
 }
 
-// ── STREAK BANNER ─────────────────────────────────────────────────
+// ── OPENING MESSAGE ───────────────────────────────────────────────
 function checkOpeningMessage(){
   const today=dateKey();
   const last=state.stats.lastWriteDate;
   const banner=document.getElementById('streak-banner');
-  if(!last){
-    banner.classList.remove('show');
-    if(state.messages.length===0) addWelcomeMsg();
-    return;
-  }
-  const diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
-  if(diff===0){
-    banner.textContent=`🔥 ${state.stats.streak}-day streak — you wrote today already. Keep it going.`;
-    banner.classList.add('show');
-  } else if(diff===1){
-    banner.textContent=`⚡ You wrote yesterday. Don't break the streak today.`;
-    banner.classList.add('show');
-  } else if(diff>=2){
-    banner.textContent=`📖 ${diff} days since you last wrote. Let's fix that right now.`;
-    banner.classList.add('show');
-  }
-  if(state.messages.length===0) addWelcomeMsg();
+  let diff=99;
+  if(last)diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
+  if(diff===0){banner.textContent=`🔥 ${state.stats.streak}-day streak — already wrote today. Keep it going.`;banner.classList.add('show');}
+  else if(diff===1){banner.textContent=`⚡ You wrote yesterday. Don't break the streak.`;banner.classList.add('show');}
+  else if(diff>=2&&diff<30){banner.textContent=`📖 ${diff} days since you last wrote. Let's fix that.`;banner.classList.add('show');}
+  if(state.messages.length===0)addWelcomeMsg();
 }
 
-// ── WELCOME MSG ───────────────────────────────────────────────────
 function addWelcomeMsg(){
   const proj=getActiveProject();
   const today=dateKey();
   const last=state.stats.lastWriteDate;
   let diff=99;
-  if(last) diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
-  let opening='';
-  if(diff===0) opening=`You already wrote today — respect. You coming back for more or just checking in?`;
-  else if(diff===1) opening=`Yesterday you wrote. Today you can too. What are we working on — ${proj?proj.title:'your project'}?`;
-  else if(diff>=2&&diff<7) opening=`${diff} days, Matt. That's too long. I'm not gonna lecture you but I need you to open ${proj?proj.title:'your project'} right now. What's the first scene on your mind?`;
-  else opening=`Hey Matt. ${proj?proj.title:'Your project'} is waiting. You've got the ideas — you always do. The only thing between you and the story is starting. What's going on in your head right now, story-wise?`;
-  addMsg('coach',opening,'');
+  if(last)diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
+  let msg='';
+  if(diff===0)msg=`You already wrote today — respect. Coming back for more or just checking in?`;
+  else if(diff===1)msg=`Yesterday you wrote. Today you can too. What are we working on — ${proj?proj.title:'your project'}?`;
+  else if(diff>=2&&diff<7)msg=`${diff} days, Matt. That's too long. Open ${proj?proj.title:'your project'} right now. What's the first scene on your mind?`;
+  else msg=`Hey Matt. ${proj?proj.title:'Your project'} is waiting. You've got the ideas — always have. What's going on in your head story-wise right now?`;
+  addMsg('coach',msg,'',null);
 }
 
 // ── MESSAGES ─────────────────────────────────────────────────────
-function addMsg(role,text,note){
-  state.messages.push({role,text,note:note||'',time:Date.now()});
+function addMsg(role,text,note,bibleProposal){
+  state.messages.push({role,text,note:note||'',bibleProposal:bibleProposal||null,time:Date.now()});
   if(state.messages.length>120)state.messages=state.messages.slice(-120);
   save();renderMessages();
 }
@@ -511,12 +449,29 @@ function addMsg(role,text,note){
 function renderMessages(){
   const el=document.getElementById('messages');
   el.innerHTML='';
-  state.messages.forEach(m=>{
+  state.messages.forEach((m,mi)=>{
     const div=document.createElement('div');
     div.className=`msg ${m.role}`;
     const time=new Date(m.time).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
     div.innerHTML=`<div class="bubble">${escHtml(m.text)}</div>`;
-    if(m.note&&m.role==='coach') div.innerHTML+=`<div class="coach-chip">✍️ ${escHtml(m.note)}</div>`;
+    if(m.note&&m.role==='coach')div.innerHTML+=`<div class="coach-chip">✍️ ${escHtml(m.note)}</div>`;
+    // Bible save proposal card
+    if(m.bibleProposal&&m.role==='coach'&&!m.bibleProposal.saved){
+      const bp=m.bibleProposal;
+      div.innerHTML+=`
+        <div class="bible-save-card" id="bsc-${mi}">
+          <div class="bible-save-title">📖 Save to Story Bible?</div>
+          <div class="bible-save-name">${escHtml(bp.name)}</div>
+          <div class="bible-save-preview">${escHtml(bp.content.substring(0,100))}${bp.content.length>100?'...':''}</div>
+          <div class="bible-save-actions">
+            <button class="bible-save-btn yes" onclick="acceptBibleSave(${mi})">Save it</button>
+            <button class="bible-save-btn no" onclick="dismissBibleSave(${mi})">Skip</button>
+          </div>
+        </div>`;
+    }
+    if(m.bibleProposal&&m.bibleProposal.saved){
+      div.innerHTML+=`<div class="coach-chip" style="color:var(--blue);background:var(--blue-light);">📖 Saved to Story Bible — ${escHtml(m.bibleProposal.name)}</div>`;
+    }
     div.innerHTML+=`<div class="msg-time">${time}</div>`;
     el.appendChild(div);
   });
@@ -525,18 +480,39 @@ function renderMessages(){
 
 function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
 
+function acceptBibleSave(msgIdx){
+  const msg=state.messages[msgIdx];
+  if(!msg||!msg.bibleProposal)return;
+  const bp=msg.bibleProposal;
+  const pid=state.activeProjectId;
+  if(!state.bible[pid])state.bible[pid]=[];
+  // Don't duplicate
+  if(!state.bible[pid].find(e=>e.name===bp.name&&e.type===bp.type)){
+    state.bible[pid].push({id:'bc'+Date.now(),type:bp.type,name:bp.name,content:bp.content,fromCoach:true});
+  }
+  msg.bibleProposal.saved=true;
+  save();renderMessages();renderBible();
+  showToast(`"${bp.name}" saved to bible`);
+}
+
+function dismissBibleSave(msgIdx){
+  const msg=state.messages[msgIdx];
+  if(!msg||!msg.bibleProposal)return;
+  msg.bibleProposal.saved='dismissed';
+  save();renderMessages();
+}
+
 // ── SEND ─────────────────────────────────────────────────────────
 async function sendMessage(){
   const inp=document.getElementById('msg-input');
   const text=inp.value.trim();
   if(!text||inp.disabled)return;
-  // Count words if it looks like actual writing (longer than 20 chars and not a question)
-  const isWriting=text.length>30&&!text.trim().endsWith('?')&&text.split(' ').length>5;
+  const isWriting=text.length>30&&text.split(' ').length>5&&!text.trim().endsWith('?');
   const wc=isWriting?text.trim().split(/\s+/).length:0;
   inp.value='';inp.style.height='';
   inp.disabled=true;document.getElementById('send-btn').disabled=true;
-  addMsg('user',text,'');
-  if(wc>0) addWords(wc);
+  addMsg('user',text,'',null);
+  if(wc>0)addWords(wc);
   save();showTyping();
   try{
     const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
@@ -545,61 +521,50 @@ async function sendMessage(){
       body:JSON.stringify({
         model:'llama-3.3-70b-versatile',
         messages:[{role:'system',content:buildSystemPrompt()},...buildApiMessages()],
-        max_tokens:600,temperature:0.9
+        max_tokens:700,temperature:0.9
       })
     });
     removeTyping();
     if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${res.status}`);}
     const data=await res.json();
-    processResponse(data.choices?.[0]?.message?.content||'',wc);
+    processResponse(data.choices?.[0]?.message?.content||'');
   }catch(e){
     removeTyping();
-    addMsg('coach',`Something went wrong: ${e.message}. Check your API key.`,'');
+    addMsg('coach',`Something went wrong: ${e.message}. Check your API key.`,'',null);
   }
   inp.disabled=false;
 }
 
-function processResponse(raw,writingWords){
-  let displayText=raw,note='';
-  const jm=raw.match(/\[\[NOTE\]\]([\s\S]*?)\[\[\/NOTE\]\]/);
-  if(jm){note=jm[1].trim();displayText=raw.replace(/\[\[NOTE\]\][\s\S]*?\[\[\/NOTE\]\]/,'').trim();}
-  if(note) state.lastCoachNote=note;
-  save();
-  addMsg('coach',displayText,note);
-}
+function processResponse(raw){
+  let displayText=raw,note='',bibleProposal=null;
 
-function addWords(count){
-  const proj=getActiveProject();
-  if(proj){proj.words=(proj.words||0)+count;}
-  state.sessionWords=(state.sessionWords||0)+count;
-  state.stats.totalWords=(state.stats.totalWords||0)+count;
-  state.stats.todayWords=(state.stats.todayWords||0)+count;
-  const today=dateKey();
-  const todayIdx=new Date().getDay();
-  if(!state.activity)state.activity=[0,0,0,0,0,0,0];
-  state.activity[todayIdx]=(state.activity[todayIdx]||0)+count;
-  // Streak
-  if(state.stats.lastWriteDate!==today){
-    const last=state.stats.lastWriteDate;
-    if(last){
-      const diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));
-      if(diff===1) state.stats.streak=(state.stats.streak||0)+1;
-      else state.stats.streak=1;
-    } else {state.stats.streak=1;}
-    state.stats.lastWriteDate=today;
+  // Extract coach note
+  const noteMatch=raw.match(/\[\[NOTE\]\]([\s\S]*?)\[\[\/NOTE\]\]/);
+  if(noteMatch){note=noteMatch[1].trim();displayText=displayText.replace(/\[\[NOTE\]\][\s\S]*?\[\[\/NOTE\]\]/,'').trim();}
+
+  // Extract bible save proposal
+  const bibleMatch=raw.match(/\[\[BIBLE\]\]([\s\S]*?)\[\[\/BIBLE\]\]/);
+  if(bibleMatch){
+    try{
+      bibleProposal=JSON.parse(bibleMatch[1].trim());
+      bibleProposal.saved=false;
+    }catch(e){bibleProposal=null;}
+    displayText=displayText.replace(/\[\[BIBLE\]\][\s\S]*?\[\[\/BIBLE\]\]/,'').trim();
   }
-  document.getElementById('session-words-badge').textContent=`${state.sessionWords} words`;
-  save();renderProgress();
+
+  if(note)state.lastCoachNote=note;
+  save();
+  addMsg('coach',displayText,note,bibleProposal);
 }
 
 // ── SYSTEM PROMPT ─────────────────────────────────────────────────
 function buildSystemPrompt(){
   const proj=getActiveProject();
-  const bibleEntries=(state.bible[state.activeProjectId]||[]);
-  const bibleText=bibleEntries.length?bibleEntries.map(e=>`[${e.type.toUpperCase()}] ${e.name}: ${e.content}`).join('\n'):'(No entries yet)';
+  const bibleEntries=state.bible[state.activeProjectId]||[];
+  const bibleText=bibleEntries.length?bibleEntries.map(e=>`[${e.type.toUpperCase()}${e.fromCoach?' — coach note':''}] ${e.name}: ${e.content}`).join('\n'):'(Empty — nothing saved yet)';
   const today=dateKey();
   const last=state.stats.lastWriteDate;
-  let daysSince=last?Math.round((new Date(today)-new Date(last))/(1000*60*60*24)):99;
+  const daysSince=last?Math.round((new Date(today)-new Date(last))/(1000*60*60*24)):99;
 
   return `You are Inkwell — a direct, no-fluff writing coach for Matt. You know him well.
 
@@ -608,30 +573,33 @@ ${MATT_PROFILE}
 ACTIVE PROJECT: ${proj?proj.title:'Unknown'}
 Genre: ${proj?proj.genre:''}
 Description: ${proj?proj.desc:''}
-Words written in this project: ${proj?proj.words||0:0}
-Days since last writing session: ${daysSince===99?'unknown':daysSince}
-Words written this session: ${state.sessionWords||0}
+Words in this project: ${proj?proj.words||0:0}
+Days since last session: ${daysSince===99?'first time':daysSince}
+Words this session: ${state.sessionWords||0}
+Streak: ${state.stats.streak||0} days
 
-STORY BIBLE FOR THIS PROJECT:
+STORY BIBLE (current project):
 ${bibleText}
-
-SESSION CONTEXT:
-- Streak: ${state.stats.streak||0} days
-- Total words ever: ${state.stats.totalWords||0}
-- Today's words: ${state.stats.todayWords||0}
 
 YOUR JOB:
 - Be a real coach. Short responses unless he pastes actual writing to review.
-- If he's stuck: give ONE concrete next step. Not advice. An action.
-- If he pastes writing: respond like a real reader. What landed, what didn't, one specific fix.
-- If he's making excuses: name it kindly but directly. "That's avoidance, not a real block."
-- Use the story bible to give specific, informed responses about his characters and world.
-- Celebrate word counts genuinely when they come in.
-- Never write his story for him. Guide, don't ghostwrite.
+- If stuck: give ONE concrete next action. Not advice. A specific prompt or challenge.
+- If he pastes writing: respond like a real reader. What worked, what didn't, one fix.
+- If he's avoiding or making excuses: name it directly but without being harsh.
+- Use the story bible — reference his characters by name, his world details, his themes.
+- Never write his story for him. Guide, push, question. Don't ghostwrite.
+- When reviewing writing, be honest. If it's rough, say so kindly and say why.
 
-At the end of your response, optionally include a coaching note:
-[[NOTE]]brief observation about this session or his progress[[/NOTE]]
-Only include the NOTE block when you have something genuinely useful to flag. Skip it for short back-and-forth.`;
+BIBLE SAVING:
+During the conversation, if you develop or discover something worth saving to the story bible — a character detail, a plot point, a world rule — propose saving it using this exact format at the END of your response:
+[[BIBLE]]{"type":"character","name":"Entry name","content":"Full description to save"}[[/BIBLE]]
+
+type options: "character", "plot", "world", "note"
+Only propose a bible save when something genuinely new and useful was established in THIS message. Don't propose saves for things already in the bible. Max one save per response.
+
+OPTIONAL coach note:
+[[NOTE]]brief observation about this session[[/NOTE]]
+Only include when you have something genuinely useful to flag.`;
 }
 
 function buildApiMessages(){
@@ -647,64 +615,83 @@ function showTyping(){
 }
 function removeTyping(){const e=document.getElementById('typing');if(e)e.remove();}
 
+// ── WORDS ─────────────────────────────────────────────────────────
+function addWords(count){
+  const proj=getActiveProject();
+  if(proj)proj.words=(proj.words||0)+count;
+  state.sessionWords=(state.sessionWords||0)+count;
+  state.stats.totalWords=(state.stats.totalWords||0)+count;
+  state.stats.todayWords=(state.stats.todayWords||0)+count;
+  const today=dateKey();
+  const todayIdx=new Date().getDay();
+  if(!state.activity)state.activity=[0,0,0,0,0,0,0];
+  state.activity[todayIdx]=(state.activity[todayIdx]||0)+count;
+  if(state.stats.lastWriteDate!==today){
+    const last=state.stats.lastWriteDate;
+    if(last){const diff=Math.round((new Date(today)-new Date(last))/(1000*60*60*24));state.stats.streak=diff===1?(state.stats.streak||0)+1:1;}
+    else{state.stats.streak=1;}
+    state.stats.lastWriteDate=today;
+  }
+  document.getElementById('session-words-badge').textContent=`${state.sessionWords} words`;
+  save();renderProgress();
+}
+
 // ── PROJECTS ─────────────────────────────────────────────────────
 function getActiveProject(){return(state.projects||[]).find(p=>p.id===state.activeProjectId);}
 
 function renderProjectsList(){
   const el=document.getElementById('projects-list');if(!el)return;
-  const projs=state.projects||[];
-  if(!projs.length){el.innerHTML='<div class="empty-state"><div class="empty-icon">📚</div>No projects yet.</div>';return;}
-  el.innerHTML=projs.map(p=>`
-    <div class="project-card ${p.id===state.activeProjectId?'active-proj':''}" >
+  if(!state.projects.length){el.innerHTML='<div class="empty-state">No projects yet.</div>';return;}
+  el.innerHTML=state.projects.map(p=>`
+    <div class="project-card ${p.id===state.activeProjectId?'active-proj':''}">
       <div class="project-name">${escHtml(p.title)}</div>
       <div class="project-meta">${p.words||0} words written</div>
       <div class="project-genre">${escHtml(p.genre||'')}</div>
       ${p.desc?`<div style="font-size:13px;color:var(--text3);margin-top:8px;line-height:1.5;">${escHtml(p.desc)}</div>`:''}
       <div class="proj-actions">
         <button class="proj-btn primary" onclick="setActiveProject('${p.id}')">Write this</button>
-        <button class="proj-btn" onclick="deleteProject('${p.id}')">Delete</button>
+        ${p.id!=='proj_mm'&&p.id!=='proj_shutter'?`<button class="proj-btn" onclick="deleteProject('${p.id}')">Delete</button>`:''}
       </div>
     </div>`).join('');
 }
 
 function renderProjDropdown(){
   const el=document.getElementById('proj-dropdown');if(!el)return;
-  const projs=state.projects||[];
-  el.innerHTML=projs.map(p=>`
-    <div class="proj-option ${p.id===state.activeProjectId?'selected':''}" onclick="setActiveProject('${p.id}');toggleProjDropdown()">
+  el.innerHTML=state.projects.map(p=>`
+    <div class="proj-option ${p.id===state.activeProjectId?'selected':''}" onclick="setActiveProject('${p.id}');closeProjDropdown()">
       ${escHtml(p.title)}
-    </div>`).join('')+`<div class="proj-option proj-option-add" onclick="openProjModal();toggleProjDropdown()">+ New project</div>`;
+    </div>`).join('')+`<div class="proj-option proj-option-add" onclick="openProjModal();closeProjDropdown()">+ New project</div>`;
 }
 
 function updateActiveProjectUI(){
   const proj=getActiveProject();
   const nameEl=document.getElementById('active-proj-name');
-  if(nameEl) nameEl.textContent=proj?proj.title:'No project';
+  if(nameEl)nameEl.textContent=proj?proj.title:'No project';
   const badge=document.getElementById('session-words-badge');
-  if(badge) badge.textContent=`${state.sessionWords||0} words`;
+  if(badge)badge.textContent=`${state.sessionWords||0} words`;
 }
 
 function setActiveProject(id){
-  state.activeProjectId=id;
-  state.messages=[];state.sessionWords=0;
+  state.activeProjectId=id;state.messages=[];state.sessionWords=0;
   save();updateActiveProjectUI();renderProjDropdown();renderProjectsList();
   renderMessages();addWelcomeMsg();renderBibleSelect();renderBible();
-  switchTab('write',document.querySelector('.nav-item'));
-  document.querySelectorAll('.nav-item').forEach((b,i)=>{b.classList.toggle('active',i===0);});
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-write').classList.add('active');
+  document.querySelector('.nav-item').classList.add('active');
 }
 
 function deleteProject(id){
-  if(id==='proj_mm'||id==='proj_shutter'){showToast("Can't delete default projects");return;}
   if(!confirm('Delete this project?'))return;
   state.projects=state.projects.filter(p=>p.id!==id);
-  if(state.activeProjectId===id) state.activeProjectId=state.projects[0]?.id||'proj_mm';
+  if(state.activeProjectId===id)state.activeProjectId=state.projects[0]?.id||'proj_mm';
   save();renderProjectsList();renderProjDropdown();updateActiveProjectUI();
 }
 
 function toggleProjDropdown(){document.getElementById('proj-dropdown').classList.toggle('open');}
-document.addEventListener('click',e=>{if(!e.target.closest('.project-pill'))document.getElementById('proj-dropdown')?.classList.remove('open');});
+function closeProjDropdown(){document.getElementById('proj-dropdown').classList.remove('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.project-pill'))closeProjDropdown();});
 
-// ── NEW PROJECT MODAL ─────────────────────────────────────────────
 function openProjModal(){document.getElementById('proj-modal').classList.add('open');}
 function closeProjModal(e){
   if(!e||e.target===document.getElementById('proj-modal')||e.currentTarget?.classList?.contains('modal-btn-cancel')){
@@ -722,16 +709,14 @@ function createProject(){
   document.getElementById('new-proj-title').value='';
   document.getElementById('new-proj-genre').value='';
   document.getElementById('new-proj-desc').value='';
-  closeProjModal();
-  save();renderProjectsList();renderProjDropdown();renderBibleSelect();
+  closeProjModal();save();renderProjectsList();renderProjDropdown();renderBibleSelect();
   showToast(`"${title}" created`);
 }
 
 // ── BIBLE ─────────────────────────────────────────────────────────
 function renderBibleSelect(){
   const el=document.getElementById('bible-proj-select');if(!el)return;
-  const projs=state.projects||[];
-  el.innerHTML=projs.map(p=>`<option value="${p.id}" ${p.id===state.activeProjectId?'selected':''}>${escHtml(p.title)}</option>`).join('');
+  el.innerHTML=state.projects.map(p=>`<option value="${p.id}" ${p.id===state.activeProjectId?'selected':''}>${escHtml(p.title)}</option>`).join('');
 }
 
 function renderBible(){
@@ -739,33 +724,28 @@ function renderBible(){
   const pid=sel?sel.value:state.activeProjectId;
   const entries=state.bible[pid]||[];
   const el=document.getElementById('bible-entries');if(!el)return;
-  if(!entries.length){
-    el.innerHTML='<div class="empty-state" style="padding:20px 0;"><div class="empty-icon">📖</div>No entries yet for this project.</div>';
-    return;
-  }
+  if(!entries.length){el.innerHTML='<div class="empty-state" style="padding:20px 0;"><div class="empty-icon">📖</div>No entries yet.</div>';return;}
   const typeOrder={character:0,plot:1,world:2,note:3};
   const sorted=[...entries].sort((a,b)=>(typeOrder[a.type]||3)-(typeOrder[b.type]||3));
   el.innerHTML=sorted.map((e,i)=>`
     <div class="bible-entry">
-      <div class="bible-entry-header" onclick="toggleBibleEntry('be-${i}')">
-        <span class="bible-type-badge badge-${e.type}">${e.type}</span>
+      <div class="bible-entry-header" onclick="toggleBibleEntry('be-${i}','ba-${i}')">
+        <span class="bible-type-badge badge-${e.fromCoach?'coach':e.type}">${e.fromCoach?'coach':e.type}</span>
         <span class="bible-entry-name">${escHtml(e.name)}</span>
         <span class="bible-entry-arrow" id="ba-${i}">▶</span>
       </div>
       <div class="bible-entry-body" id="be-${i}">
         <div class="bible-entry-content">${escHtml(e.content)}</div>
+        ${e.fromCoach?`<span class="bible-coach-tag">📖 Added by coach</span>`:''}
         <span class="bible-entry-del" onclick="deleteBibleEntry('${pid}','${e.id}')">Delete entry</span>
       </div>
     </div>`).join('');
 }
 
-function toggleBibleEntry(bodyId){
-  const body=document.getElementById(bodyId);
-  const idx=bodyId.replace('be-','');
-  const arrow=document.getElementById(`ba-${idx}`);
+function toggleBibleEntry(bodyId,arrowId){
+  const body=document.getElementById(bodyId);const arrow=document.getElementById(arrowId);
   if(!body||!arrow)return;
-  const open=body.classList.toggle('open');
-  arrow.classList.toggle('open',open);
+  const open=body.classList.toggle('open');arrow.classList.toggle('open',open);
 }
 
 function addBibleEntry(){
@@ -776,7 +756,7 @@ function addBibleEntry(){
   const content=document.getElementById('new-entry-content').value.trim();
   if(!name||!content){showToast('Need a name and description');return;}
   if(!state.bible[pid])state.bible[pid]=[];
-  state.bible[pid].push({id:'b'+Date.now(),type,name,content});
+  state.bible[pid].push({id:'b'+Date.now(),type,name,content,fromCoach:false});
   document.getElementById('new-entry-name').value='';
   document.getElementById('new-entry-content').value='';
   save();renderBible();showToast('Added to story bible');
@@ -821,14 +801,7 @@ function saveSessionToLog(){
   const now=Date.now();
   if(!state.sessionLog)state.sessionLog=[];
   if(state.sessionLog.find(s=>Math.abs(s.id-now)<120000))return;
-  state.sessionLog.unshift({
-    id:now,
-    date:new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}),
-    project:proj?proj.title:'Unknown',
-    words:state.sessionWords,
-    mins,
-    note:state.lastCoachNote
-  });
+  state.sessionLog.unshift({id:now,date:new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}),project:proj?proj.title:'Unknown',words:state.sessionWords,mins,note:state.lastCoachNote});
   state.sessionLog=state.sessionLog.slice(0,40);
   save();renderSessionLog();
 }
@@ -848,9 +821,7 @@ function renderSessionLog(){
 
 // ── NAV ───────────────────────────────────────────────────────────
 function switchTab(name,btn){
-  if(document.getElementById('tab-write')?.classList.contains('active')&&name!=='write'){
-    saveSessionToLog();
-  }
+  if(document.getElementById('tab-write')?.classList.contains('active')&&name!=='write')saveSessionToLog();
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   document.getElementById(`tab-${name}`).classList.add('active');
@@ -862,14 +833,12 @@ function switchTab(name,btn){
 
 // ── UTILS ─────────────────────────────────────────────────────────
 function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function autoResize(el){
-  el.style.height='';
-  el.style.height=Math.min(el.scrollHeight,120)+'px';
+  el.style.height='';el.style.height=Math.min(el.scrollHeight,120)+'px';
   document.getElementById('send-btn').disabled=!el.value.trim();
 }
 </script>
